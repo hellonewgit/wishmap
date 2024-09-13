@@ -3,9 +3,8 @@ import DesireCard from '../DesireCard/DesireCard';
 import styles from './MyWishes.module.css';
 
 const MyWishes = ({ wishes, toggleWish }) => {
-    // Проверяем, есть ли хотя бы одно желание
     if (wishes.length === 0) {
-        return null; // Если "Мои желания" пусты, ничего не рендерим
+        return null;
     }
 
     return (
