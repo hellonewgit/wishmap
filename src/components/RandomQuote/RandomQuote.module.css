@@ -37,3 +37,24 @@
 .hidden {
     opacity: 0; /* Цитата скрыта */
 }
+
+@media (max-width: 768px) {
+    .blockquote {
+        width: 80%;
+    }
+    .blockquote::before {
+        left: -20px;
+        top: -20px;
+    }
+    
+    .blockquote::after {
+        right: -10px;
+        bottom: -20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .blockquote {
+        width: 80%;
+    }
+}

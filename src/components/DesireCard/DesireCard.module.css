@@ -8,9 +8,10 @@
 }
 
 .desire-card__image {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
+    width: 100%; /* Изображение будет заполнять всю ширину контейнера */
+    height: 200px; /* Фиксированная высота для всех изображений */
+    object-fit: cover; /* Обрезает изображение, сохраняя пропорции */
+    border-radius: 10px; /* Красивая закруглённость */
 }
 
 .desire-card__title {
@@ -32,3 +33,4 @@
 .desire-card__button:hover {
     background-color: #0056b3;
 }
+
