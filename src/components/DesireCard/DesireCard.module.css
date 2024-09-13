@@ -1,0 +1,23 @@
+/* src/components/DesireCard/DesireCard.module.css */
+.desire-card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.desire-card__image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.desire-card__title {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.desire-card__description {
+    font-size: 16px;
+    color: #666;
+}
