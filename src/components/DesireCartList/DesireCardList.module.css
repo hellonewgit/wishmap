@@ -1,0 +1,7 @@
+.desire-card-list {
+    display: flex;
+    justify-content: center; /* Центрируем карточки по горизонтали */
+    flex-wrap: wrap; /* Если карточек больше, они будут переходить на новую строку */
+    gap: 32px; /* Расстояние между карточками */
+    padding: 20px;
+}
