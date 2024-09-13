@@ -5,12 +5,12 @@ import styles from './DesireCardList.module.css';
 const DesireCardList = () => {
     // Массив с данными для карточек
     const desires = [
-        { title: 'Деньги', imageUrl: '/src/assets/images/wishmapimg.jpg' },
-        { title: 'Семья', imageUrl: '/src/assets/images/wishmapimg.jpg' },
-        { title: 'Путешествия', imageUrl: '/src/assets/images/wishmapimg.jpg' },
-        { title: 'Успех', imageUrl: '/src/assets/images/wishmapimg.jpg' },
-        { title: 'Карьера', imageUrl: '/src/assets/images/wishmapimg.jpg' },
-        { title: 'Саморазвитие', imageUrl: '/src/assets/images/wishmapimg.jpg' },
+        { title: 'Деньги', imageUrl: '/wishmap/assets/images/wishmapimg.jpg' },
+        { title: 'Семья', imageUrl: '/wishmap/assets/images/wishmapimg.jpg' },
+        { title: 'Путешествия', imageUrl: '/wishmap/assets/images/wishmapimg.jpg' },
+        { title: 'Успех', imageUrl: '/wishmap/assets/images/wishmapimg.jpg' },
+        { title: 'Карьера', imageUrl: '/wishmap/assets/images/wishmapimg.jpg' },
+        { title: 'Саморазвитие', imageUrl: '/wishmap/assets/images/wishmapimg.jpg' },
     ];
 
     return (
