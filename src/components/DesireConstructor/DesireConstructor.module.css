@@ -1,0 +1,37 @@
+.desire-constructor, .my-wishes {
+    display: flex;
+    flex-wrap: wrap; /* Карточки будут переноситься на новую строку при нехватке места */
+    justify-content: center; /* Центрируем карточки */
+    gap: 20px; /* Пространство между карточками */
+    padding: 20px; /* Отступы для воздуха внутри секции */
+}
+
+.desire-card {
+    width: 200px; /* Фиксированная ширина карточки */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+.desire-card__image {
+    width: 100%;
+    height: 150px; /* Фиксированная высота изображений */
+    object-fit: cover; /* Обрезаем изображение, сохраняя пропорции */
+    border-radius: 5px;
+}
+
+.desire-card__title {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.desire-card__button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

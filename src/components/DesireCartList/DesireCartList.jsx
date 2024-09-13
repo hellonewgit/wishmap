@@ -1,9 +1,9 @@
-import React from 'react';
-import DesireCard from '../DesireCard/DesireCard'; // Импорт компонента карточки
+import React, { useState } from 'react';
+import MyWishes from '../MyWishes/MyWishes';
+import DesireConstructor from '../DesireConstructor/DesireConstructor';
 import styles from './DesireCardList.module.css';
 
 const DesireCardList = () => {
-    // Массив с данными для карточек
     const desires = [
         { title: 'Деньги', imageUrl: '/wishmap/assets/images/money.jpg' },
         { title: 'Семья', imageUrl: '/wishmap/assets/images/family.jpg' },
@@ -13,18 +13,26 @@ const DesireCardList = () => {
         { title: 'Саморазвитие', imageUrl: '/wishmap/assets/images/self.jpg' },
     ];
 
+    const [myWishes, setMyWishes] = useState([]);
+
+    // Функция для добавления/удаления карточки из "Моих желаний"
+    const handleToggleWish = (desire) => {
+        if (myWishes.some(wish => wish.title === desire.title)) {
+            // Если карточка уже в "Моих желаниях", удаляем её
+            setMyWishes(myWishes.filter(wish => wish.title !== desire.title));
+        } else {
+            // Если карточки нет, добавляем её
+            setMyWishes([...myWishes, desire]);
+        }
+    };
+
     return (
         <div>
-            <h2>Выбирай что хочешь</h2>
-            <div className={styles['desire-card-list']}>
-                {desires.map((desire, index) => (
-                    <DesireCard
-                        key={index}
-                        title={desire.title}
-                        imageUrl={desire.imageUrl}
-                    />
-                ))}
-            </div>
+            <MyWishes wishes={myWishes} toggleWish={handleToggleWish} />
+
+            <hr className={styles['divider']} /> {/* Разделяем визуально секции */}
+
+            <DesireConstructor desires={desires} myWishes={myWishes} toggleWish={handleToggleWish} />
         </div>
     );
 };

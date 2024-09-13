@@ -5,3 +5,9 @@
     gap: 32px; /* Расстояние между карточками */
     padding: 20px;
 }
+
+.divider {
+    border: none;
+    border-top: 1px dashed #ddd; /* Пунктирная линия */
+    margin: 20px 0;
+}
