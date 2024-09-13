@@ -7,6 +7,7 @@ function App() {
       <h1>Карта Желаний</h1>
       <DesireCard title="Деньги" imageUrl="https://ic.pics.livejournal.com/xachapyri/9652291/5824/5824_320.jpg" />
       <DesireCard title="Семья" imageUrl="https://ic.pics.livejournal.com/xachapyri/9652291/5824/5824_320.jpg" />
+      <DesireCard title="Путешествия" imageUrl="https://ic.pics.livejournal.com/xachapyri/9652291/5824/5824_320.jpg" />
     </>
   )
 }
