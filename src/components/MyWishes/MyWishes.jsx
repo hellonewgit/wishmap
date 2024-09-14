@@ -2,7 +2,7 @@ import React from 'react';
 import DesireCard from '../DesireCard/DesireCard';
 import styles from './MyWishes.module.css';
 
-const MyWishes = ({ wishes, toggleWish }) => {
+const MyWishes = ({ wishes, toggleWish, updateWishTitle }) => {
     if (wishes.length === 0) {
         return null;
     }
@@ -18,6 +18,8 @@ const MyWishes = ({ wishes, toggleWish }) => {
                         imageUrl={wish.imageUrl}
                         isInMyWishes={true}
                         toggleWish={() => toggleWish(wish)}
+                        updateTitle={(newTitle) => updateWishTitle(index, newTitle)}
+                        canEdit={true} 
                     />
                 ))}
             </div>

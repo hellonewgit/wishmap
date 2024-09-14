@@ -30,21 +30,26 @@ const DesireCardList = () => {
         setMyWishes([...myWishes, newWish]);
     };
 
+    // Обновление названия карточки
+    const handleUpdateWishTitle = (index, newTitle) => {
+        const updatedWishes = [...myWishes];
+        updatedWishes[index].title = newTitle;
+        setMyWishes(updatedWishes);
+    };
+
     return (
         <div>
-            {/* Раздел "Мои желания" */}
-            <MyWishes wishes={myWishes} toggleWish={handleToggleWish} />
 
-            {/* Разделение визуальных секций */}
+            <MyWishes
+                wishes={myWishes}
+                toggleWish={handleToggleWish}
+                updateWishTitle={handleUpdateWishTitle} // Передаём функцию для обновления
+            />
+
             {myWishes.length > 0 && <hr className={styles['divider']} />}
 
-            {/* Раздел "Конструктор желаний" */}
             <DesireConstructor desires={desires} myWishes={myWishes} toggleWish={handleToggleWish} />
-
-            {/* Разделение для удобства восприятия */}
-            <hr className={styles['divider']} />
-
-            {/* Раздел "Создай своё желание" */}
+            
             <CreateWishCard addWish={handleAddWish} />
         </div>
     );
