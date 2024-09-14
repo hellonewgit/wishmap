@@ -1,0 +1,77 @@
+.create-wish-container {
+    display: flex; /* Размещаем блоки рядом */
+    justify-content: center; /* Разделяем блоки по сторонам */
+    align-items: flex-start; /* Выравниваем по верхнему краю */
+    gap: 64px; /* Пространство между блоками */
+    flex-wrap: wrap;
+}
+
+.create-wish-card {
+    flex: 1; /* Задаем форму как гибкий блок */
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 32px 20px;
+    max-width: 400px;
+    min-width: 250px;
+}
+
+.wish-preview {
+    margin-bottom: 10px;
+    font-size: 22px;
+    color: #007bff;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.save-button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.save-button:hover {
+    background-color: #0056b3;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+/* Стили для блока с инструкцией */
+.instruction {
+    flex: 1; /* Гибкий блок для инструкции */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 600px;
+    min-width: 250px;
+}
+
+.instruction h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.instruction ol {
+    margin-bottom: 10px;
+}
+
+.instruction p {
+    font-size: 14px;
+    color: #555;
+}

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import MyWishes from '../MyWishes/MyWishes';
 import DesireConstructor from '../DesireConstructor/DesireConstructor';
+import CreateWishCard from '../CreateWishCard/CreateWishCard'; // Импорт конструктора карточки
 import styles from './DesireCardList.module.css';
 
 const DesireCardList = () => {
-    // Массив всех карточек
     const desires = [
         { title: 'Деньги', imageUrl: '/wishmap/assets/images/money.jpg' },
         { title: 'Семья', imageUrl: '/wishmap/assets/images/family.jpg' },
@@ -14,30 +14,38 @@ const DesireCardList = () => {
         { title: 'Саморазвитие', imageUrl: '/wishmap/assets/images/self.jpg' },
     ];
 
-    // Состояние для хранения "Моих желаний"
     const [myWishes, setMyWishes] = useState([]);
 
     // Логика добавления/удаления карточек
     const handleToggleWish = (desire) => {
         if (myWishes.some(wish => wish.title === desire.title)) {
-            // Если карточка уже в "Моих желаниях", удаляем её
             setMyWishes(myWishes.filter(wish => wish.title !== desire.title));
         } else {
-            // Добавляем карточку в "Мои желания"
             setMyWishes([...myWishes, desire]);
         }
     };
 
+    // Добавление нового желания
+    const handleAddWish = (newWish) => {
+        setMyWishes([...myWishes, newWish]);
+    };
+
     return (
         <div>
-            {/* Секция "Мои желания" */}
+            {/* Раздел "Мои желания" */}
             <MyWishes wishes={myWishes} toggleWish={handleToggleWish} />
 
-            {/* Разделитель */}
+            {/* Разделение визуальных секций */}
             {myWishes.length > 0 && <hr className={styles['divider']} />}
 
-            {/* Секция "Конструктор" */}
+            {/* Раздел "Конструктор желаний" */}
             <DesireConstructor desires={desires} myWishes={myWishes} toggleWish={handleToggleWish} />
+
+            {/* Разделение для удобства восприятия */}
+            <hr className={styles['divider']} />
+
+            {/* Раздел "Создай своё желание" */}
+            <CreateWishCard addWish={handleAddWish} />
         </div>
     );
 };
