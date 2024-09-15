@@ -1,9 +1,8 @@
 /* Модульные стили для шапки */
 .header {
-    background-color: #4a90e2;
     padding: 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
   }
   

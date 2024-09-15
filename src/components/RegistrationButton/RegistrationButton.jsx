@@ -1,22 +1,11 @@
-import React, { useState } from 'react';
-import Modal from '../Modal/Modal';
-import RegistrationForm from '../RegistrationForm/RegistrationForm';
+import { Link } from 'react-router-dom';
+import styles from './RegistrationButton.module.css';
 
 const RegisterButton = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
-
-  const openModal = () => setModalOpen(true);
-  const closeModal = () => setModalOpen(false);
-
   return (
-    <>
-      <button onClick={openModal} className="register-button">Регистрация</button>
-      {isModalOpen && (
-        <Modal onClose={closeModal}>
-          <RegistrationForm />
-        </Modal>
-      )}
-    </>
+    <Link to="/register">
+      <button className={styles['register-button']}>Регистрация</button>  {/* Использование модульных стилей */}
+    </Link>
   );
 };
 

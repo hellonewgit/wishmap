@@ -1,18 +1,6 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
 .center {
-  margin-left: calc(50% - 520px); /* Отступ слева */
-  margin-right: calc(50% - 520px); /* Отступ справа */
+  margin-left: calc(50% - 640px); /* Отступ слева */
+  margin-right: calc(50% - 640px); /* Отступ справа */
 }
 
 body {
