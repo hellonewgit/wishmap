@@ -8,11 +8,11 @@ import Header from './components/Header/Header';  // Импортируем ко
 function App() {
   return (
     <Router basename="/wishmap">
-      <Header />  {/* Используем компонент Header */}
-      <div className="center">  {/* Добавляем класс center */}
+      <div className="center">
         <Routes>
           <Route path="/" element={(
             <>
+              <Header />
               <h1>Карта Желаний</h1>
               <RandomQuote />
               <DesireCardList />

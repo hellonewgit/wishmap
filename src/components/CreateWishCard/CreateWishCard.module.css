@@ -4,6 +4,7 @@
     align-items: flex-start; /* Выравниваем по верхнему краю */
     gap: 64px; /* Пространство между блоками */
     flex-wrap: wrap;
+    padding-bottom: 64px;
 }
 
 .create-wish-card {

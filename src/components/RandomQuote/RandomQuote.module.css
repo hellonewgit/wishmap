@@ -9,7 +9,8 @@
     padding-left: 30px;
     position: relative;
     min-height: 120px;
-    transition: opacity 1s ease-in-out; /* Плавный переход */
+    transition: opacity 1s ease-in-out;
+    /* Плавный переход */
 }
 
 .blockquote::before {
@@ -31,30 +32,39 @@
 }
 
 .visible {
-    opacity: 1; /* Цитата видима */
+    opacity: 1;
+    /* Цитата видима */
 }
 
 .hidden {
-    opacity: 0; /* Цитата скрыта */
+    opacity: 0;
+    /* Цитата скрыта */
 }
 
 @media (max-width: 768px) {
     .blockquote {
         width: 80%;
+        font-size: 1.3rem;
     }
+
     .blockquote::before {
         left: -20px;
         top: -20px;
+        font-size: 3rem;
+
     }
-    
+
     .blockquote::after {
         right: -10px;
         bottom: -20px;
+        font-size: 3rem;
+
     }
 }
 
 @media (max-width: 576px) {
     .blockquote {
         width: 80%;
+        font-size: 1.3rem;
     }
 }

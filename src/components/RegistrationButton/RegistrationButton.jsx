@@ -4,7 +4,7 @@ import styles from './RegistrationButton.module.css';
 const RegisterButton = () => {
   return (
     <Link to="/register">
-      <button className={styles['register-button']}>Регистрация</button>  {/* Использование модульных стилей */}
+      <button className={styles['register-button']}>Регистрация</button>
     </Link>
   );
 };

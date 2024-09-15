@@ -1,6 +1,8 @@
 .center {
-  margin-left: calc(50% - 640px); /* Отступ слева */
-  margin-right: calc(50% - 640px); /* Отступ справа */
+  padding-left: calc(50% - 640px);
+  /* Отступ слева */
+  padding-right: calc(50% - 640px);
+  /* Отступ справа */
 }
 
 body {
@@ -9,13 +11,10 @@ body {
   font-family: Arial, sans-serif;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  text-align: center;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -24,10 +23,40 @@ body {
   }
 }
 
-.card {
-  padding: 2em;
+@media (max-width: 1024px) {
+  .center {
+    padding-left: calc(50% - 480px);
+    padding-right: calc(50% - 480px);
+  }
 }
 
-.read-the-docs {
-  color: #888;
+
+@media (max-width: 960px) {
+  .center {
+    padding-left: calc(50% - 420px);
+    padding-right: calc(50% - 420px);
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .center {
+    padding-left: calc(50% - 370px);
+    padding-right: calc(50% - 370px);
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .center {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }
