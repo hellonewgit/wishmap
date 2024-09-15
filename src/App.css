@@ -1,39 +1,21 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-.center {
-  margin-left: calc(50% - 520px); /* Отступ слева */
-  margin-right: calc(50% - 520px); /* Отступ справа */
-}
-
 body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h1 {
+  font-size: 2.5rem;
+  text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+h2 {
+  text-align: center;
+}
+
+.center {
+  padding-left: calc(50% - 640px);
+  padding-right: calc(50% - 640px);
 }
 
 .card {
@@ -42,4 +24,36 @@ body {
 
 .read-the-docs {
   color: #888;
+}
+
+@media (max-width: 1024px) {
+  .center {
+    padding-left: calc(50% - 480px);
+    padding-right: calc(50% - 480px);
+  }
+}
+
+
+@media (max-width: 960px) {
+  .center {
+    padding-left: calc(50% - 450px);
+    padding-right: calc(50% - 450px);
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .center {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }

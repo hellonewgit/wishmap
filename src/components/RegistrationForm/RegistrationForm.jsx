@@ -33,7 +33,7 @@ const RegistrationForm = () => {
     };
 
     return (
-        <div className={styles['registration-form']}>
+        <div className={`${styles['registration-form']} center`}>
             <h2 className={styles['registration-form__title']}>Зарегистрироваться</h2>
             <form onSubmit={handleSubmit}>
                 <div className={styles['registration-form__group']}>
