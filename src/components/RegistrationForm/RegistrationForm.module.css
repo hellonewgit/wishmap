@@ -71,3 +71,9 @@
 .registration-form__arrow {
     margin-left: 30px;
 }
+
+@media (max-width: 768px) {
+    .registration-form {
+        max-width: 375px;
+    }
+}
