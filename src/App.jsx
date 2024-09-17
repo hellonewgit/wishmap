@@ -1,5 +1,6 @@
 // src/App.jsx
 import React from 'react';
+import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DesireCardList from './components/DesireCartList/DesireCartList';
 import RandomQuote from './components/RandomQuote/RandomQuote';
