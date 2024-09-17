@@ -1,0 +1,21 @@
+/* src/pages/Dashboard/Dashboard.module.css */
+.dashboard {
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+.logoutButton {
+    padding: 10px 20px;
+    background-color: rgb(79, 70, 229);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.logoutButton:hover {
+    background-color: rgb(59, 50, 189);
+}

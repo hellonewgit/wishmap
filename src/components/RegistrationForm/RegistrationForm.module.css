@@ -15,7 +15,6 @@
     font-size: 32px;
     font-weight: 700;
     line-height: 38px;
-    letter-spacing: 0%;
     text-align: left;
     margin-bottom: 48px;
 }
@@ -33,13 +32,10 @@
     background: rgb(255, 255, 255);
     font-size: 16px;
     outline: none;
-    box-sizing: border-box;
     color: rgb(124, 128, 146);
     font-size: 18px;
-    font-weight: 400;
     line-height: 24px;
-    letter-spacing: 0px;
-    text-align: left;
+    box-sizing: border-box;
 }
 
 /* Элемент кнопки отправки */
@@ -48,7 +44,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 16px 32px 16px 32px;
+    padding: 16px 32px;
     border-radius: 12px;
     background: rgb(79, 70, 229);
     border: none;
@@ -57,27 +53,38 @@
     font-size: 20px;
     font-weight: 500;
     line-height: 26px;
+}
+
+/* Элемент текста для соглашения */
+.registration-form__privacy {
+    color: rgb(161, 161, 170);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
     letter-spacing: 0%;
-    text-align: center;
+    text-align: left;
+    margin-top: 10px;
 }
 
-/* Элемент сообщения */
-.registration-form__message {
-    text-align: center;
-    color: #4caf50;
-    margin-top: 15px;
+/* Элемент ссылки */
+.registration-form__link {
+    color: rgb(79, 70, 229);
+    text-decoration: none;
 }
 
-.registration-form__arrow {
-    margin-left: 30px;
+/* Разделительная линия */
+.registration-form__divider {
+    margin: 20px 0;
+    border: 0;
+    height: 1px;
+    background: white;
 }
 
-@media (max-width: 768px) {
-    .registration-form {
-        max-width: 320px;
-    }
-
-    .registration-form__title {
-        font-size: 24px;
-    }
+/* Элемент текста с предложением войти */
+.registration-form__login-prompt {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: 0%;
+    text-align: left;
 }

@@ -1,14 +1,7 @@
+// src/redux/slices/userSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-// Начальное состояние
-const initialState = {
-    user: null,
-    token: localStorage.getItem('token') || null, // Загружаем токен из localStorage при инициализации
-    status: 'idle', // idle | loading | succeeded | failed
-    error: null,
-};
-
-// Асинхронный thunk для регистрации
+// Асинхронное действие для регистрации пользователя
 export const registerUser = createAsyncThunk(
     'user/registerUser',
     async (userData, thunkAPI) => {
@@ -18,10 +11,11 @@ export const registerUser = createAsyncThunk(
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(userData),
             });
+
             const data = await response.json();
 
             if (response.ok) {
-                return data; // Возвращаем данные пользователя при успешной регистрации
+                return data; // Возвращаем данные пользователя после успешной регистрации
             } else {
                 return thunkAPI.rejectWithValue(data.detail || 'Ошибка регистрации');
             }
@@ -31,7 +25,7 @@ export const registerUser = createAsyncThunk(
     }
 );
 
-// Асинхронный thunk для входа
+// Асинхронное действие для входа пользователя
 export const loginUser = createAsyncThunk(
     'user/loginUser',
     async (credentials, thunkAPI) => {
@@ -41,12 +35,13 @@ export const loginUser = createAsyncThunk(
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(credentials),
             });
+
             const data = await response.json();
 
             if (response.ok) {
                 return data; // Возвращаем данные пользователя и токен
             } else {
-                return thunkAPI.rejectWithValue(data.detail || 'Ошибка входа');
+                return thunkAPI.rejectWithValue(data.detail || 'Ошибка при входе');
             }
         } catch (error) {
             return thunkAPI.rejectWithValue('Ошибка сети');
@@ -54,34 +49,60 @@ export const loginUser = createAsyncThunk(
     }
 );
 
-// Слайс для пользователя
+// Асинхронное действие для восстановления пароля
+export const resetPassword = createAsyncThunk(
+    'user/resetPassword',
+    async (email, thunkAPI) => {
+        try {
+            const response = await fetch('https://wishmapbackend.onrender.com/reset-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                return data; // Возвращаем сообщение об успешном восстановлении
+            } else {
+                return thunkAPI.rejectWithValue(data.detail || 'Ошибка восстановления пароля');
+            }
+        } catch (error) {
+            return thunkAPI.rejectWithValue('Ошибка сети');
+        }
+    }
+);
+
 const userSlice = createSlice({
     name: 'user',
-    initialState,
+    initialState: {
+        user: null,
+        token: null,
+        status: 'idle',
+        error: null,
+    },
     reducers: {
         logout(state) {
             state.user = null;
             state.token = null;
-            localStorage.removeItem('token'); // Удаляем токен из localStorage при выходе
         },
     },
     extraReducers: (builder) => {
         builder
-            // Регистрация пользователя
+            // Обработка регистрации
             .addCase(registerUser.pending, (state) => {
                 state.status = 'loading';
             })
             .addCase(registerUser.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.user = action.payload.user;
-                state.token = action.payload.token;
+                state.user = action.payload;
                 state.error = null;
             })
             .addCase(registerUser.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.payload;
             })
-            // Вход пользователя
+            // Обработка входа
             .addCase(loginUser.pending, (state) => {
                 state.status = 'loading';
             })
@@ -90,11 +111,20 @@ const userSlice = createSlice({
                 state.user = action.payload.user;
                 state.token = action.payload.token;
                 state.error = null;
-
-                // Сохранение токена в localStorage
-                localStorage.setItem('token', action.payload.token);
             })
             .addCase(loginUser.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = action.payload;
+            })
+            // Обработка восстановления пароля
+            .addCase(resetPassword.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(resetPassword.fulfilled, (state) => {
+                state.status = 'succeeded';
+                state.error = null;
+            })
+            .addCase(resetPassword.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.payload;
             });
@@ -102,5 +132,4 @@ const userSlice = createSlice({
 });
 
 export const { logout } = userSlice.actions;
-
 export default userSlice.reducer;

@@ -1,0 +1,17 @@
+/* src/components/Form/FormButton.module.css */
+.button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 32px;
+    border-radius: 12px;
+    background: rgb(79, 70, 229);
+    border: none;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 26px;
+  }
+  

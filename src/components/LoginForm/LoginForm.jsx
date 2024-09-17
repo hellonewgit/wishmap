@@ -1,8 +1,9 @@
-// components/LoginForm/LoginForm.js
-import React, { useState } from 'react';
+// src/components/LoginForm/LoginForm.jsx
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../../redux/reducers/userSlice';
-import styles from './LoginForm.module.css';
+import { loginUser } from '../../redux/slices/userSlice'; // Правильный импорт
+import { useNavigate } from 'react-router-dom';
+import AuthForm from '../Form/AuthForm';
 
 const LoginForm = () => {
     const dispatch = useDispatch();
@@ -11,34 +12,32 @@ const LoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const navigate = useNavigate();
+
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(loginUser({ email, password }));
     };
 
+    useEffect(() => {
+        if (status === 'succeeded') {
+            navigate('/dashboard');
+        }
+    }, [status, navigate]);
+
     return (
-        <div className={styles['login-form']}>
-            <h2>Войти</h2>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="email"
-                    placeholder='Ваш e-mail'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                <input
-                    type="password"
-                    placeholder='Введите пароль'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                <button type="submit">Войти</button>
-                {status === 'loading' && <p>Вход...</p>}
-                {status === 'failed' && <p className={styles['error']}>{error}</p>}
-            </form>
-        </div>
+        <AuthForm
+            title="Войти"
+            onSubmit={handleSubmit}
+            fields={[
+                { name: 'email', type: 'email', value: email, onChange: (e) => setEmail(e.target.value), placeholder: 'Ваш e-mail' },
+                { name: 'password', type: 'password', value: password, onChange: (e) => setPassword(e.target.value), placeholder: 'Введите пароль' }
+            ]}
+            buttonText="Войти"
+            footerText="Забыли пароль?"
+            footerLink="/reset-password"
+            footerLinkText="Восстановить"
+        />
     );
 };
 
