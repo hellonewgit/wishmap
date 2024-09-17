@@ -89,6 +89,22 @@
     text-align: left;
 }
 
+/* src/components/RegistrationForm/RegistrationForm.module.css */
+.registration-form__message {
+    text-align: center;
+    color: #4caf50;
+    /* Цвет успешного сообщения */
+    margin-top: 15px;
+}
+
+.registration-form__error {
+    text-align: center;
+    color: red;
+    /* Цвет ошибки */
+    margin-top: 15px;
+}
+
+
 /* Адаптивные стили */
 
 /* Для экранов до 768px */

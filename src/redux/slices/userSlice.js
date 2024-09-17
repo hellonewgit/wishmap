@@ -1,4 +1,3 @@
-// src/redux/slices/userSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 // Асинхронное действие для регистрации пользователя
@@ -15,6 +14,8 @@ export const registerUser = createAsyncThunk(
             const data = await response.json();
 
             if (response.ok) {
+                // Сохраняем пользователя в localStorage
+                localStorage.setItem('user', JSON.stringify(data));
                 return data; // Возвращаем данные пользователя после успешной регистрации
             } else {
                 return thunkAPI.rejectWithValue(data.detail || 'Ошибка регистрации');
@@ -39,6 +40,8 @@ export const loginUser = createAsyncThunk(
             const data = await response.json();
 
             if (response.ok) {
+                // Сохраняем данные пользователя в localStorage
+                localStorage.setItem('user', JSON.stringify(data));
                 return data; // Возвращаем данные пользователя и токен
             } else {
                 return thunkAPI.rejectWithValue(data.detail || 'Ошибка при входе');
@@ -76,7 +79,7 @@ export const resetPassword = createAsyncThunk(
 const userSlice = createSlice({
     name: 'user',
     initialState: {
-        user: null,
+        user: JSON.parse(localStorage.getItem('user')) || null, // Получаем пользователя из localStorage, если он есть
         token: null,
         status: 'idle',
         error: null,
@@ -85,6 +88,7 @@ const userSlice = createSlice({
         logout(state) {
             state.user = null;
             state.token = null;
+            localStorage.removeItem('user'); // Удаляем данные пользователя из localStorage при выходе
         },
     },
     extraReducers: (builder) => {
@@ -96,6 +100,7 @@ const userSlice = createSlice({
             .addCase(registerUser.fulfilled, (state, action) => {
                 state.status = 'succeeded';
                 state.user = action.payload;
+                state.token = action.payload.token; // Добавляем токен, если он вернулся с сервера
                 state.error = null;
             })
             .addCase(registerUser.rejected, (state, action) => {

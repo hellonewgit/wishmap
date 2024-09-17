@@ -1,29 +1,138 @@
 /* Модульные стили для шапки */
+
 .header {
-    padding: 20px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+  padding: 32px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: calc(50% - 520px);
+  padding-right: calc(50% - 520px);
+}
+
+.header__logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+}
+
+.header__nav {
+  display: flex;
+  gap: 15px;
+}
+
+.header__link {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 20px;
+  background-color: rgb(79, 70, 229);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.header__link:hover {
+  background-color: rgba(79, 70, 229, 0.8);
+  border-color: white;
+  cursor: pointer;
+  color: white;
+}
+
+.header__username {
+  position: relative;
+  color: #46ffcc;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Блок с кнопкой "Выйти", который изначально скрыт */
+.header__logout {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgb(79, 70, 229);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  visibility: hidden; /* По умолчанию скрыт */
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 10;
+}
+
+/* Показываем блок с "Выйти" при наведении на username */
+.header__username:hover .header__logout {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+/* Адаптивные стили */
+
+/* Для экранов шириной до 1024px (планшеты) */
+@media (max-width: 1024px) {
+  .header {
+    padding-left: calc(50% - 420px);
+    padding-right: calc(50% - 420px);
   }
-  
+
   .header__logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
+    font-size: 20px;
   }
-  
-  .header__nav {
-    display: flex;
-    gap: 20px;
-  }
-  
+
   .header__link {
-    color: white;
-    text-decoration: none;
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .header__username {
     font-size: 16px;
   }
-  
-  .header__link:hover {
-    text-decoration: underline;
+}
+
+/* Для экранов шириной до 768px (мобильные устройства) */
+@media (max-width: 768px) {
+  .header {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
-  
+
+  .header__logo {
+    font-size: 18px;
+  }
+
+  .header__nav {
+    gap: 10px;
+  }
+
+  .header__link {
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+
+  .header__username {
+    font-size: 14px;
+  }
+}
+
+/* Для экранов шириной до 480px (маленькие устройства) */
+@media (max-width: 480px) {
+
+  .header__logo {
+    font-size: 16px;
+  }
+
+  .header__link {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .header__username {
+    font-size: 12px;
+  }
+}

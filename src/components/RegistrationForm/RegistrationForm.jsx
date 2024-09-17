@@ -2,13 +2,14 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../../redux/slices/userSlice';
-import { useNavigate, Link } from 'react-router-dom'; // Импортируем Link для навигации
-import styles from './RegistrationForm.module.css'; // Импорт модульных стилей
+import { useNavigate } from 'react-router-dom';
+import styles from './RegistrationForm.module.css';
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
   const status = useSelector((state) => state.user.status);
   const error = useSelector((state) => state.user.error);
+  const user = useSelector((state) => state.user.user); // Получаем данные пользователя из Redux
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,9 +23,11 @@ const RegistrationForm = () => {
 
   useEffect(() => {
     if (status === 'succeeded') {
-      navigate('/login'); // Тут не нужно указывать /wishmap/login, так как basename автоматически добавится
+      // Сохраняем данные пользователя в localStorage, если нужно
+      localStorage.setItem('user', JSON.stringify(user)); // Сохраняем пользователя
+      navigate('/'); // Перенаправляем на главную страницу
     }
-  }, [status, navigate]);
+  }, [status, navigate, user]);
 
   return (
     <div className={styles['registration-form']}>
@@ -64,22 +67,18 @@ const RegistrationForm = () => {
           />
         </div>
 
-        <button type="submit" className={styles['registration-form__button']}>
-          Создать аккаунт
+        <button
+          type="submit"
+          className={styles['registration-form__button']}
+          disabled={status === 'loading'}
+        >
+          {status === 'loading' ? 'Регистрация...' : 'Создать аккаунт'}
         </button>
 
-        {/* Добавляем текст о политике конфиденциальности под кнопкой */}
-        <p className={styles['registration-form__privacy']}>
-          Нажимая на кнопку, вы соглашаетесь с обработкой персональных данных и
-          <Link to="/privacy-policy" className={styles['registration-form__link']}> Политикой конфиденциальности</Link>.
-        </p>
+        {status === 'failed' && (
+          <p className={styles['registration-form__error']}>{error}</p>
+        )}
       </form>
-
-      <hr className={styles['registration-form__divider']} />
-
-      <p className={styles['registration-form__login-prompt']}>
-        Уже есть аккаунт? <Link to="/login" className={styles['registration-form__link']}>Войти</Link>
-      </p>
     </div>
   );
 };
