@@ -5,6 +5,8 @@ import DesireCardList from './components/DesireCartList/DesireCartList';
 import RandomQuote from './components/RandomQuote/RandomQuote';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import LoginPage from './pages/LoginPage/LoginPage';
+import ResetPasswordPage from './pages/ResetPasswordPage/ResetPasswordPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage/PrivacyPolicyPage'; // Импорт страницы политики конфиденциальности
 import Header from './components/Header/Header';
 import Dashboard from './pages/Dashboard/Dashboard';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
@@ -24,6 +26,8 @@ function App() {
           )} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} /> {/* Добавляем маршрут для политики конфиденциальности */}
           <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
         </Routes>
       </div>
