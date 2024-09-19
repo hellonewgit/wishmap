@@ -6,12 +6,13 @@ import wishesReducer from './slices/wishesSlice';
 // Здесь загружаем токен из localStorage при инициализации
 const preloadedState = {
     user: {
-        token: localStorage.getItem('token'), // Если токен есть в localStorage, загружаем его
-        user: null, // Можно также загружать данные пользователя, если они есть
+        token: localStorage.getItem('token'),
+        user: JSON.parse(localStorage.getItem('user')) || null, // Загружаем данные пользователя, если они есть
         status: 'idle',
         error: null,
     },
 };
+
 
 const store = configureStore({
     reducer: {

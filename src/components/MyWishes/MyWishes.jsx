@@ -3,8 +3,8 @@ import styles from './MyWishes.module.css';
 
 const MyWishes = ({ wishes = [], toggleWish, updateWishTitle }) => {
     // Если массив желаний пуст, ничего не отображаем
-    if (!wishes || wishes.length === 0) {
-        return null;
+    if (!Array.isArray(wishes) || wishes.length === 0) {
+        return <p>У вас пока нет желаний.</p>;
     }
 
     return (

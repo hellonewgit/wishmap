@@ -21,7 +21,6 @@ const Dashboard = () => {
       <button onClick={handleLogout} className={styles.logoutButton}>
         Выйти
       </button>
-      {/* Добавьте здесь содержимое Dashboard */}
     </div>
   );
 };

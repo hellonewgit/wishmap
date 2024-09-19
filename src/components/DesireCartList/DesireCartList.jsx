@@ -1,12 +1,10 @@
-// DesireCartList.jsx
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import MyWishes from '../MyWishes/MyWishes';
 import DesireConstructor from '../DesireConstructor/DesireConstructor';
 import CreateWishCard from '../CreateWishCard/CreateWishCard';
 import styles from './DesireCardList.module.css';
 import { addWish, removeWish, updateWishTitle, setWishes } from "../../redux/slices/wishesSlice";
-
 
 const DesireCardList = () => {
     const desires = [
@@ -18,27 +16,31 @@ const DesireCardList = () => {
         { id: 6, title: 'Саморазвитие', imageUrl: '/wishmap/assets/images/self.jpg' },
     ];
 
-
     const dispatch = useDispatch();
     const myWishes = useSelector((state) => state.wishes);
     const user = useSelector((state) => state.user.user);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (user) {
-            // Загрузка желаний пользователя с сервера
+        if (user && user.id) {
+            setLoading(true);
             fetch(`https://wishmapbackend.onrender.com/users/${user.id}/wishes`)
                 .then((response) => response.json())
                 .then((data) => {
                     dispatch(setWishes(data));
+                    setLoading(false);
                 })
                 .catch((error) => {
                     console.error('Ошибка при загрузке желаний:', error);
+                    setLoading(false);
                 });
+        } else {
+            setLoading(false);
         }
     }, [user, dispatch]);
 
     const handleToggleWish = (desire) => {
-        if (myWishes.some((wish) => wish.id === desire.id)) {
+        if (Array.isArray(myWishes) && myWishes.some((wish) => wish.id === desire.id)) {
             dispatch(removeWish(desire.id));
         } else {
             dispatch(addWish(desire));
@@ -46,7 +48,7 @@ const DesireCardList = () => {
     };
 
     const handleAddWish = (newWish) => {
-        const newId = Date.now(); // Или используйте uuid
+        const newId = Date.now(); // Генерируем уникальный ID для нового желания
         const wishWithId = { ...newWish, id: newId };
         dispatch(addWish(wishWithId));
     };
@@ -55,15 +57,24 @@ const DesireCardList = () => {
         dispatch(updateWishTitle({ id, newTitle }));
     };
 
+    if (loading) {
+        return <p>Загрузка...</p>;
+    }
+
     return (
         <div>
-            <MyWishes
-                wishes={myWishes}
-                toggleWish={handleToggleWish}
-                updateWishTitle={handleUpdateWishTitle}
-            />
+            {(!myWishes || !Array.isArray(myWishes) || myWishes.length === 0) ? (
+                <p>У вас пока нет желаний.</p>
+            ) : (
+                <MyWishes
+                    wishes={myWishes}
+                    toggleWish={handleToggleWish}
+                    updateWishTitle={handleUpdateWishTitle}
+                />
+            )}
 
-            {myWishes.length > 0 && <hr className={styles['divider']} />}
+            {/* Раздел выбора желаний должен всегда быть доступен */}
+            <hr className={styles['divider']} />
 
             <DesireConstructor
                 desires={desires}

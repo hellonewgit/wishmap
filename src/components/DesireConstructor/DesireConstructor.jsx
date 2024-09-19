@@ -2,7 +2,10 @@ import DesireCard from '../DesireCard/DesireCard';
 import styles from './DesireConstructor.module.css';
 
 const DesireConstructor = ({ desires = [], myWishes = [], toggleWish }) => {
-    const myWishesIds = myWishes.map((wish) => wish.id);
+    // Защищаемся от ошибки, если myWishes не является массивом
+    const myWishesArray = Array.isArray(myWishes) ? myWishes : [];
+
+    const myWishesIds = myWishesArray.map((wish) => wish.id);
     const availableDesires = desires.filter((desire) => !myWishesIds.includes(desire.id));
 
     return (
