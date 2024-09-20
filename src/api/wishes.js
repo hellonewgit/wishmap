@@ -1,9 +1,7 @@
-// src/api/wishes.js
-
 import axios from 'axios';
 
 // Настраиваем базовый URL для axios
-const API_URL = 'https://wishmapbackend.onrender.com';
+const API_URL = 'https://wishmapbackend.onrender.com/api'; // Убедитесь, что '/api' правильно
 
 // Функция для получения заголовков с токеном
 const getHeaders = (token) => ({
