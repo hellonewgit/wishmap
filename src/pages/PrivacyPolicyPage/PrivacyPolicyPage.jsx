@@ -1,24 +1,41 @@
-// src/pages/PrivacyPolicyPage/PrivacyPolicyPage.jsx
-import React from 'react';
-import styles from './PrivacyPolicy.module.css'; // Импорт стилей
+// PrivacyPolicyPage.jsx
 
-const PrivacyPolicyPage = () => {
+import React, { useState } from 'react';
+import styles from './ResetPasswordPage.module.css';
+
+const ResetPasswordPage = () => {
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+
+    const handleReset = (e) => {
+        e.preventDefault();
+        // Здесь добавьте логику для отправки запроса на сброс пароля
+        setMessage('Инструкция по сбросу пароля отправлена на ваш email.');
+    };
+
     return (
-        <div className={styles['privacy-policy']}>
-            <h2 className={styles['privacy-policy__title']}>Политика конфиденциальности</h2>
-            <p className={styles['privacy-policy__text']}>
-                Мы заботимся о вашей конфиденциальности. Вся личная информация, которую вы предоставляете на нашем сайте,
-                будет использоваться в соответствии с настоящей политикой конфиденциальности.
-            </p>
-            <p className={styles['privacy-policy__text']}>
-                Мы не будем передавать ваши данные третьим лицам без вашего согласия. В случае использования ваших данных
-                в маркетинговых или иных целях, мы заранее уведомим вас.
-            </p>
-            <p className={styles['privacy-policy__text']}>
-                Если у вас есть вопросы о нашей политике конфиденциальности, пожалуйста, свяжитесь с нами через контактные данные, указанные на сайте.
-            </p>
+        <div className={styles['reset-password-form']}>
+            <h2>Сброс пароля</h2>
+            <form onSubmit={handleReset}>
+                <div className={styles['reset-password-group']}>
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Ваш e-mail"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className={styles['reset-password-input']}
+                        required
+                    />
+                </div>
+                <button type="submit" className={styles['reset-password-button']}>
+                    Сбросить пароль
+                </button>
+            </form>
+            {message && <p className={styles['reset-password-message']}>{message}</p>}
         </div>
     );
 };
 
-export default PrivacyPolicyPage;
+export default ResetPasswordPage;
+

@@ -1,18 +1,31 @@
-// store.js
+// src/redux/store.js
+
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './slices/userSlice';
 import wishesReducer from './slices/wishesSlice';
 
-// Здесь загружаем токен из localStorage при инициализации
+// Функция для безопасного получения данных пользователя из localStorage
+const getUserFromLocalStorage = () => {
+    const user = localStorage.getItem('user');
+    if (user && user !== 'undefined') { // Проверяем, что user не равен строке 'undefined'
+        try {
+            return JSON.parse(user);
+        } catch (error) {
+            console.error("Ошибка при парсинге данных пользователя из localStorage:", error);
+        }
+    }
+    return null;
+};
+
+// Предзагруженное состояние из localStorage
 const preloadedState = {
     user: {
-        token: localStorage.getItem('token'),
-        user: JSON.parse(localStorage.getItem('user')) || null, // Загружаем данные пользователя, если они есть
+        token: localStorage.getItem('userToken') || null, // Получаем токен из localStorage
+        user: getUserFromLocalStorage(), // Получаем данные пользователя
         status: 'idle',
         error: null,
     },
 };
-
 
 const store = configureStore({
     reducer: {
@@ -23,4 +36,3 @@ const store = configureStore({
 });
 
 export default store;
-

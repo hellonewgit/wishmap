@@ -1,3 +1,6 @@
+// src/components/DesireConstructor/DesireConstructor.jsx
+
+import React from 'react';
 import DesireCard from '../DesireCard/DesireCard';
 import styles from './DesireConstructor.module.css';
 

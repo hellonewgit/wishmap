@@ -1,8 +1,11 @@
+// src/components/MyWishes/MyWishes.jsx
+
+import React from 'react';
 import DesireCard from '../DesireCard/DesireCard';
 import styles from './MyWishes.module.css';
 
 const MyWishes = ({ wishes = [], toggleWish, updateWishTitle }) => {
-    // Если массив желаний пуст, ничего не отображаем
+    // Если массив желаний пуст, показываем сообщение
     if (!Array.isArray(wishes) || wishes.length === 0) {
         return <p>У вас пока нет желаний.</p>;
     }

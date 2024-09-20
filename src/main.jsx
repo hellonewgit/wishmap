@@ -1,19 +1,14 @@
-// main.jsx
-import React from 'react';
-import ReactDOM from 'react-dom/client'; // Современный метод для рендеринга в React 18+
-import { Provider } from 'react-redux'; // Провайдер для доступа к Redux
-import App from './App'; // Главный компонент приложения
-import store from './redux/store'; // Хранилище Redux
-import './index.css'; // Подключение глобальных стилей
+// src/main.jsx
 
-// Проверка наличия сохраненного пользователя в localStorage
-const savedUser = JSON.parse(localStorage.getItem('user'));
-if (savedUser) {
-  store.dispatch({ type: 'user/registerUser/fulfilled', payload: savedUser });
-}
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import './index.css';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode> {/* StrictMode для выявления потенциальных проблем */}
+  <React.StrictMode>
     <Provider store={store}>
       <App />
     </Provider>

@@ -1,14 +1,16 @@
-// src/components/LoginForm/LoginForm.jsx
+// src/components/LoginPage/LoginPage.jsx
+
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../redux/slices/userSlice';
-import { useNavigate, Link } from 'react-router-dom'; // Используем Link для навигации
-import styles from './LoginForm.module.css'; // Импортируем стили
+import { useNavigate, Link } from 'react-router-dom';
+import styles from './LoginPage.module.css';
 
-const LoginForm = () => {
+const LoginPage = () => {
     const dispatch = useDispatch();
     const status = useSelector((state) => state.user.status);
     const error = useSelector((state) => state.user.error);
+    const user = useSelector((state) => state.user.user);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -20,10 +22,10 @@ const LoginForm = () => {
     };
 
     useEffect(() => {
-        if (status === 'succeeded') {
-            navigate('/dashboard');
+        if (status === 'succeeded' && user) {
+            navigate('/dashboard'); // Перенаправляем на дашборд после успешного входа
         }
-    }, [status, navigate]);
+    }, [status, navigate, user]);
 
     return (
         <div className={styles['login-form']}>
@@ -60,12 +62,12 @@ const LoginForm = () => {
 
                 {status === 'failed' && <p className={styles['login-form__error']}>{error}</p>}
             </form>
-            <p className={styles['login-form__forgot-password']}>Забыли пароль?
+            <p className={styles['login-form__forgot-password']}>
+                Забыли пароль?
                 <Link to="/reset-password" className={styles['login-form__link']}> Восстановить</Link>
             </p>
-
         </div>
     );
 };
 
-export default LoginForm;
+export default LoginPage;

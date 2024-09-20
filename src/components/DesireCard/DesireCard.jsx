@@ -1,3 +1,5 @@
+// src/components/DesireCard/DesireCard.jsx
+
 import React, { useState } from 'react';
 import styles from './DesireCard.module.css';
 
@@ -10,6 +12,10 @@ const DesireCard = ({ id, title, imageUrl, isInMyWishes, toggleWish, updateTitle
     };
 
     const handleSaveClick = () => {
+        if (newTitle.trim() === '') {
+            alert('Название желания не может быть пустым.');
+            return;
+        }
         updateTitle(newTitle);
         setIsEditing(false);
     };

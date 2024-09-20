@@ -1,9 +1,10 @@
 // src/App.jsx
+
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import DesireCardList from './components/DesireCartList/DesireCartList';
-import RandomQuote from './components/RandomQuote/RandomQuote';
+import DesireCardList from './components/DesireCardList/DesireCardList';
+import RandomQuote from './components/RandomQuote/RandomQuote'; // Убедитесь, что этот компонент существует
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import ResetPasswordPage from './pages/ResetPasswordPage/ResetPasswordPage';
